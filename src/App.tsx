@@ -1,22 +1,20 @@
 import { observer } from "mobx-react";
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router } from "react-router-dom";
+import AppRoutes from "./routes/AppRoutes";
+import AddUserDialog from "./components/AddUserDialog";
 import "@progress/kendo-theme-default/dist/all.css";
 import "./App.css";
-import { routes } from "./routes/routes";
-import AddUserDialog from "./components/AddUserDialog";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <Router>
-        <AddUserDialog />
-        <Navbar />
-        {routes}
-      </Router>
-    </div>
+    <Router>
+      <AddUserDialog />
+      <Navbar />
+      <AppRoutes />
+    </Router>
   );
-}
+};
 const AppObservable = observer(App);
 
 export default AppObservable;

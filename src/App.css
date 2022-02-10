@@ -13,6 +13,9 @@
   background-color: #37b21f;
   border-color: #37b21f;
 }
+.k-grid {
+  height: fit-content;
+}
 .text-right button {
   margin-top: 20px;
   margin-left: 10px;
@@ -40,4 +43,9 @@
 }
 .link-decorated:hover {
   border-bottom: 1px solid;
+}
+.user-link:hover {
+  cursor: pointer;
+  color: blue;
+  border-bottom: 1px solid blue;
 }
