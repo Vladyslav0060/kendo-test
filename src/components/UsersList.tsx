@@ -12,23 +12,24 @@ const UsersList: FC = () => {
   const [users, setUsers] = useState<IUser[]>([]);
   const [sort, setSort] = useState(initialSort);
   const [filter, setFilter] = useState();
-  const fetchData = async () => {
-    const response = await httpService.get("/users", {
-      headers: {
-        Autorization: "Bearer johndoe",
-        "Content-Type": "application/json",
-      },
-    });
-    appStore.users = response?.data.users;
-    const result = response?.data.users.map((el: IUser) => {
-      el["lastLogin"] = new Date(el["lastLogin"]);
-      return el;
-    });
-    setUsers(result);
-  };
+
   useEffect(() => {
+    const fetchData = async () => {
+      const response = await httpService.get("/users", {
+        headers: {
+          Autorization: "Bearer johndoe",
+          "Content-Type": "application/json",
+        },
+      });
+      appStore.users = response?.data.users;
+      const result = response?.data.users.map((el: IUser) => {
+        el["lastLogin"] = new Date(el["lastLogin"]);
+        return el;
+      });
+      setUsers(result);
+    };
     fetchData();
-  }, [appStore]);
+  }, []);
 
   return (
     <div className="wrapper">

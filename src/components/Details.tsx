@@ -12,28 +12,29 @@ const Details: FC = () => {
   const navigate = useNavigate();
   const [user, setUser]: any = useState<IUser>();
   const [isEnabledCheckbox, setIsEnabledCheckbox] = useState<boolean>();
-  useEffect(() => {
-    fetchData();
-  }, []);
+
   useEffect(() => {
     setIsEnabledCheckbox(user?.enabled);
   }, [user]);
   const onClose = () => {
     navigate("/");
   };
-  const fetchData = async () => {
-    const res = await httpService.get("/users", {
-      headers: {
-        Autorization: "Bearer johndoe",
-        "Content-Type": "application/json",
-      },
-    });
-    const foundUser = res?.data.users.find((user: IUser) => {
-      return user.userName === userId;
-    });
-    if (foundUser !== undefined) setUser(foundUser);
-  };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await httpService.get("/users", {
+        headers: {
+          Autorization: "Bearer johndoe",
+          "Content-Type": "application/json",
+        },
+      });
+      const foundUser = res?.data.users.find((user: IUser) => {
+        return user.userName === userId;
+      });
+      if (foundUser !== undefined) setUser(foundUser);
+    };
+    fetchData();
+  }, [userId]);
   return (
     <>
       <Window
