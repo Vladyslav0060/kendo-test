@@ -33,10 +33,6 @@ const EditUserForm = (props: any) => {
         fullName: fullName,
         enabled: isEnabledCheckbox,
       },
-      headers: {
-        Autorization: "Bearer johndoe",
-        "Content-Type": "application/json",
-      },
     };
     const res = await httpService.put("/users", body);
     alert(`Request sent, status ${res?.status}`);
