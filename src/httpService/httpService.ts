@@ -2,17 +2,16 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import db from "../db/db.json";
 const mock = new MockAdapter(axios, { delayResponse: 1000 });
+const defaultHeader = { headers: { Authorization: "" } };
 mock.onGet("/users").reply(200, db);
 mock.onPost("/users").reply(200);
 mock.onPut("/users").reply(200);
 const verifyHeaders = (headers: any) => {
-  return headers["Autorization"] === "Bearer johndoe" &&
-    headers["Content-Type"] === "application/json"
-    ? true
-    : false;
+  return headers["Authorization"] === "Bearer johndoe" ? true : false;
 };
 class httpService {
   post = async (url: string, request: any) => {
+    request.headers = { Authorization: "Bearer johndoe" };
     if (verifyHeaders(request.headers)) {
       try {
         const res = await axios.post(url, request.data);
@@ -25,7 +24,8 @@ class httpService {
       }
     }
   };
-  put = async (url: string, request: any) => {
+  put = async (url: string, request: any = defaultHeader) => {
+    request.headers = { Authorization: "Bearer johndoe" };
     if (verifyHeaders(request.headers)) {
       try {
         const res = await axios.put(url, request.data);
@@ -38,7 +38,8 @@ class httpService {
       }
     }
   };
-  get = async (url: string, request: any) => {
+  get = async (url: string, request: any = defaultHeader) => {
+    request.headers.Authorization = "Bearer johndoe";
     if (verifyHeaders(request.headers))
       try {
         const res = await axios.get(url);

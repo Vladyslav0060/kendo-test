@@ -33,9 +33,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node api.js && react-scripts start",
     "server": "json-server --watch ./src/db/db.json --port 8000",
-    "build": "react-scripts build",
+    "build": "node api.js && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

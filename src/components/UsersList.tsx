@@ -15,12 +15,7 @@ const UsersList: FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await httpService.get("/users", {
-        headers: {
-          Autorization: "Bearer johndoe",
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await httpService.get("/users");
       appStore.users = response?.data.users;
       const result = response?.data.users.map((el: IUser) => {
         el["lastLogin"] = new Date(el["lastLogin"]);
