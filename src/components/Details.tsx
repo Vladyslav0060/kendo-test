@@ -22,12 +22,7 @@ const Details: FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await httpService.get("/users", {
-        headers: {
-          Autorization: "Bearer johndoe",
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await httpService.get("/users");
       const foundUser = res?.data.users.find((user: IUser) => {
         return user.userName === userId;
       });

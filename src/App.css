@@ -24,7 +24,9 @@
   padding: 50px 5vw 15px 5vw;
   margin: 0 auto;
   background: white;
-  min-height: 100vh;
+  /* height: calc(100vh - 37px); */
+  min-height: calc(100vh - 37px);
+  height: max-content;
   display: flex;
 }
 .spinner-centered {
@@ -33,7 +35,7 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-self: center;
 }
 .content {
   width: 100%;
